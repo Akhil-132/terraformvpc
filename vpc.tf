@@ -35,3 +35,5 @@ resource "aws_subnet" "mysubt" {
 
   tags = {
     Name = "public_sub"
+  }
+}
