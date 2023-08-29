@@ -26,7 +26,7 @@ pipeline {
         
         stage('Apply') {
             steps {
-                sh "pwd;cd terraformvpc/ ; terraform apply"
+                sh "pwd;cd terraformvpc/ ; terraform apply -input=true tfplan"
             }
         }
     }
