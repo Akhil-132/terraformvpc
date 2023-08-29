@@ -24,7 +24,7 @@ pipeline {
         stage('Plan') {
             steps {
                 sh 'pwd;cd terraformvpc/ ; terraform init'
-                sh "pwd;cd terraformvpc/ ; terraform plan -out tfplan"                
+                sh "pwd;cd terraformvpc/ ; terraform plan "                
             }
         }
         stage('Approval') {
@@ -36,7 +36,6 @@ pipeline {
 
            steps {
                script {
-                    def plan = readFile 'terraform/tfplan.txt'
                     input message: "Do you want to apply the plan?",
                     parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                }
@@ -45,7 +44,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
+                sh "pwd;cd terraformvpc/ ; terraform apply -input=false"
             }
         }
     }
