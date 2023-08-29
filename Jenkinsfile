@@ -27,26 +27,10 @@ pipeline {
                 sh "pwd;cd terraformvpc/ ; terraform plan "                
             }
         }
-        stage('Approval') {
-           when {
-               not {
-                   equals expected: true, actual: params.autoApprove
-               }
-           }
-
-           steps {
-               script {
-                    input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
-               }
-           }
-       }
-
+        
         stage('Apply') {
             steps {
-                sh "pwd;cd terraformvpc/ ; terraform apply -input=false"
+                sh "pwd;cd terraformvpc/ ; terraform apply"
             }
         }
     }
-
-  }
