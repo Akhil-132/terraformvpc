@@ -1,8 +1,4 @@
 pipeline {
-
-    parameters {
-        booleanParam(name: 'autoApprove', defaultValue: ture, description: 'Automatically run apply after generating plan?')
-    } 
     environment {
         AWS_ACCESS_KEY_ID     = credentials('awscreds')
         AWS_SECRET_ACCESS_KEY = credentials('awscreds')
