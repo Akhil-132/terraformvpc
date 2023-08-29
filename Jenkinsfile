@@ -13,7 +13,7 @@ pipeline {
         stage('checkout') {
             steps {
                  script{
-                        dir("terraform")
+                        dir("terraformvpc")
                         {
                          git branch: 'main', url: 'https://github.com/Akhil-132/terraformvpc.git'
                         }
@@ -23,9 +23,9 @@ pipeline {
 
         stage('Plan') {
             steps {
-                sh 'pwd;cd terraform/ ; terraform init'
-                sh "pwd;cd terraform/ ; terraform plan -out tfplan"
-                sh 'pwd;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
+                sh 'pwd;cd terraformvpc/ ; terraform init'
+                sh "pwd;cd terraformvpc/ ; terraform plan -out tfplan"
+                sh 'pwd;cd terraformvpc/ ; terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
