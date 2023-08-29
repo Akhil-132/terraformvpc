@@ -20,7 +20,7 @@ pipeline {
         stage('Plan') {
             steps {
                 sh 'pwd;cd terraformvpc/ ; terraform init'
-                sh "pwd;cd terraformvpc/ ; terraform plan "                
+                sh "pwd;cd terraformvpc/ ; terraform plan -out  tfplan"                
             }
         }
         
